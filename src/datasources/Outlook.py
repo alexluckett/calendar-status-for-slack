@@ -8,6 +8,7 @@ from datasources import RecentEventsProvider
 
 
 OUTLOOK_DATE_FORMAT = '%m/%d/%Y %H:%M'
+keep_busy_statuses = ["Organiser", "Tentatively accepted", "Accepted"]
 
 
 class OutlookLocalAPI(RecentEventsProvider):
@@ -59,9 +60,6 @@ def _convert_busy_status_to_string(status_number):
         "Out of office",
         "Working elsewhere"
     ][status_number]
-
-
-keep_busy_statuses = ["Organiser", "Tentatively accepted", "Accepted"]
 
 
 def _convert_response_status_to_string(status_number):
@@ -118,7 +116,6 @@ def get_updated_status_message(outlook_api):
     current_but_busy = current_accepted.query("Busy_Status != 'Available'")
 
     annual_leave = _is_on_annual_leave(current_accepted, "Luckett, Alex")
-    logging.info("Annual leave: {}".format(annual_leave))
 
     if annual_leave:
         return "On holiday"
@@ -126,9 +123,5 @@ def get_updated_status_message(outlook_api):
         return "In a meeting"
     elif (now.hour < 9 or 17 <= now.hour < 19) and now.weekday() != 4:  # not before or after work, or a Friday WFH
         return "Commuting"
-    # elif now.hour >= 19:
-    #     return ""
-    # else:
-    #     return "Available"
     else:
         return ""
