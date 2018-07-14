@@ -11,7 +11,7 @@ Windows:
 * Import `task_scheduler_job.xml` to Task Scheduler
 * Modify the single action with a path to `pythonw.exe`
     * Argments should be modified to include your personal Slack token and a runtime directory for temp files
-* Ensure your Python environment includes the equired packages below
+* Ensure your Python environment includes the required packages (requirements.txt)
 
 Future versions of this will include an installer.
 
@@ -19,8 +19,7 @@ Future versions of this will include an installer.
 Written in Python 3.x on Windows.
 
 ```
-pip install win32com pandas slackclient
-
+pip install -r requirements.txt
 git clone https://github.com/alexluckett/calendar-status-for-slack.git
 \path\to\python.exe calendar-status-for-slack\src\main.py --token "YOUR_SLACK_TOKEN" --rundir="\path\to\temp\directory"
 ```
