@@ -4,11 +4,13 @@ import logging
 import win32com.client
 import pandas as pd
 
+from datasources import RecentEventsProvider
+
 
 OUTLOOK_DATE_FORMAT = '%m/%d/%Y %H:%M'
 
 
-class OutlookLocalAPI:
+class OutlookLocalAPI(RecentEventsProvider):
 
     def __init__(self):
         outlook = win32com.client.Dispatch("Outlook.Application")
