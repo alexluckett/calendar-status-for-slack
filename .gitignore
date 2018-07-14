@@ -1,0 +1,7 @@
+.idea/
+__pycache__/
+*.csv
+venv/
+
+previous_status.txt
+automate.log
