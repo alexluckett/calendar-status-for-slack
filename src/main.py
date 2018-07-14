@@ -1,7 +1,6 @@
 import logging
-import Outlook
-from Outlook import OutlookLocalAPI
-from SlackStatusUpdater import SlackStatusUpdater
+from datasources.Outlook import OutlookLocalAPI, get_updated_status_message
+from slack.SlackStatusUpdater import SlackStatusUpdater
 from exceptions import UserException
 from win32api import MessageBox
 from argparse import ArgumentParser
@@ -54,7 +53,7 @@ def main():
         outlook_api = OutlookLocalAPI()
         slack_wrapper = SlackStatusUpdater(token)
 
-        status_message = Outlook.get_updated_status_message(outlook_api)
+        status_message = get_updated_status_message(outlook_api)
         emoji = slack_wrapper.get_status_emoji(status_message)
 
         logging.info("Detected status: {}".format(status_message))

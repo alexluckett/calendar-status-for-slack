@@ -1,6 +1,7 @@
 import datetime
+import logging
 
-from win32com.client import Dispatch
+import win32com.client
 import pandas as pd
 
 
@@ -10,7 +11,7 @@ OUTLOOK_DATE_FORMAT = '%m/%d/%Y %H:%M'
 class OutlookLocalAPI:
 
     def __init__(self):
-        outlook = Dispatch("Outlook.Application")
+        outlook = win32com.client.Dispatch("Outlook.Application")
         ns = outlook.GetNamespace("MAPI")
 
         self.appointments = ns.GetDefaultFolder(9).Items
@@ -115,8 +116,6 @@ def get_updated_status_message(outlook_api):
     current_but_busy = current_accepted.query("Busy_Status != 'Available'")
 
     annual_leave = _is_on_annual_leave(current_accepted, "Luckett, Alex")
-
-    import logging
     logging.info("Annual leave: {}".format(annual_leave))
 
     if annual_leave:
