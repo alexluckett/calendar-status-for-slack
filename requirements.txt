@@ -1,3 +1,5 @@
 pywin32
+pypiwin32
 slackclient
 pandas
+requests
