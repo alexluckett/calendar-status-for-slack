@@ -20,7 +20,9 @@ Written in Python 3.x on Windows.
 
 ```
 pip install win32com pandas slackclient
-\path\to\python.exe slackstatusupdater\main.py --token "YOUR_SLACK_TOKEN" --rundir="\path\to\temp\directory"
+
+git clone https://github.com/alexluckett/calendar-status-for-slack.git
+\path\to\python.exe calendar-status-for-slack\src\main.py --token "YOUR_SLACK_TOKEN" --rundir="\path\to\temp\directory"
 ```
 
 To force the status to be updated, in the event that your event detection isn't working, add `--force=True` to the command.
