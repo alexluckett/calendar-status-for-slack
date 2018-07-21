@@ -1,24 +1,20 @@
 import logging
-from datasources.outlook import OutlookLocalAPI
 from datasources import get_updated_status_message
 from datasources import get_event_provider
 from slack.SlackStatusUpdater import SlackStatusUpdater
 from exceptions import UserException
 from win32api import MessageBox
-from argparse import ArgumentParser
+from config import ConfigStorage, get_command_line_args
 
 
-parser = ArgumentParser()
-parser.add_argument("--token", type=str, required=True)
-parser.add_argument("--rundir", type=str, required=True)
-parser.add_argument("--force", type=bool, default=False)
+command_line_args = get_command_line_args()
+config_file = command_line_args.config
 
-args = parser.parse_args()
+config_storage = ConfigStorage(config_file)
 
-run_directory = args.rundir
-token = args.token
-force = args.force
-
+run_directory = config_storage.get_general_config()["rundir"]
+force = config_storage.get_general_config()["force"]
+token = config_storage.get_application_config("slack")["token"]
 status_message_path = "{}\\previous_status.txt".format(run_directory)
 
 logging.basicConfig(filename="{}\\automate.log".format(run_directory), level=logging.DEBUG,
