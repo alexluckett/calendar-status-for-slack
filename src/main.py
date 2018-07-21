@@ -1,6 +1,7 @@
 import logging
-from datasources.Outlook import OutlookLocalAPI
+from datasources.outlook import OutlookLocalAPI
 from datasources import get_updated_status_message
+from datasources import get_event_provider
 from slack.SlackStatusUpdater import SlackStatusUpdater
 from exceptions import UserException
 from win32api import MessageBox
@@ -51,10 +52,10 @@ def update(slack_wrapper, status_message, emoji, force_write=False):
 
 def main():
     try:
-        outlook_api = OutlookLocalAPI()
+        event_provider = get_event_provider("outlook_local")
         slack_wrapper = SlackStatusUpdater(token)
 
-        status_message = get_updated_status_message(outlook_api)
+        status_message = get_updated_status_message(event_provider)
         emoji = slack_wrapper.get_status_emoji(status_message)
 
         logging.info("Detected status: {}".format(status_message))
@@ -65,7 +66,7 @@ def main():
         MessageBox(0, "{}. \r\n\r\n{}".format(e.message, e.details), "Slack Status Updater Error")
         logging.exception("User exception encountered")
     except Exception:
-        logging.exception("Fatal error occurred")
+        logging.exception("A fatal error occurred")
 
 
 if __name__ == "__main__":
