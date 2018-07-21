@@ -1,5 +1,6 @@
 import logging
-from datasources.Outlook import OutlookLocalAPI, get_updated_status_message
+from datasources.Outlook import OutlookLocalAPI
+from datasources import get_updated_status_message
 from slack.SlackStatusUpdater import SlackStatusUpdater
 from exceptions import UserException
 from win32api import MessageBox
