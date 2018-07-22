@@ -10,16 +10,21 @@ _event_providers = {
 
 def get_event_provider(provider_name, config_storage):
     try:
-        config = config_storage.get_application_config(provider_name)
+        general_config = config_storage.get_general_config()
+    except KeyError:
+        general_config = {}
+
+    try:
+        provider_config = config_storage.get_application_config(provider_name)
     except ValueError:
-        config = {}
+        provider_config = {}
 
     try:
         provider = _event_providers[provider_name]
     except KeyError:
         raise ValueError("Invalid event provider name provided")
 
-    return provider(config)
+    return provider(general_config, provider_config)
 
 
 def get_updated_status_message(event_provider: RecentEventsProvider, config_storage: ConfigStorage):

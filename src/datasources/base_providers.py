@@ -11,7 +11,8 @@ class RecentEventsProvider(ABC):
 
     config: dict
 
-    def __init__(self, config_dict: dict):
+    def __init__(self, general_config: dict, config_dict: dict):
+        self.general_config = general_config
         self.config = config_dict
 
     def get_recent_events(self):
