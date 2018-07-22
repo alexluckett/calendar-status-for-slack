@@ -20,14 +20,16 @@ class GoogleCalendar(RecentEventsProvider):
         SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
 
         store_file_path = os.path.join(self.general_config.get("rundir", ""), "token.json")
-        credential_file_path = self.config.get("credfile", "credentials.json")
+        credential_file_path = self.config["credfile"]
 
         store = _file.Storage(store_file_path)
         credentials = store.get()
 
         if not credentials or credentials.invalid:
+            flags = tools.argparser.parse_args([])
+
             flow = client.flow_from_clientsecrets(credential_file_path, SCOPES)
-            credentials = tools.run_flow(flow, store)
+            credentials = tools.run_flow(flow, store, flags)
 
         service = build('calendar', 'v3', http=credentials.authorize(Http()))
 
