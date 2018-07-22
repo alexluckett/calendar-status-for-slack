@@ -3,7 +3,7 @@ import datetime
 from datasources import RecentEventsProvider
 from apiclient.discovery import build
 from httplib2 import Http
-from oauth2client import file, client, tools
+from oauth2client import file as _file, client, tools
 import pandas as pd
 import os
 
@@ -22,7 +22,7 @@ class GoogleCalendar(RecentEventsProvider):
         store_file_path = os.path.join(self.general_config.get("rundir", ""), "token.json")
         credential_file_path = self.config.get("credfile", "credentials.json")
 
-        store = file.Storage(store_file_path)
+        store = _file.Storage(store_file_path)
         credentials = store.get()
 
         if not credentials or credentials.invalid:

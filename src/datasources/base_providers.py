@@ -24,7 +24,12 @@ class RecentEventsProvider(ABC):
 
         schema = ['Title', 'Organizer', 'Start', 'End', 'Busy_Status', 'Response_Status']
 
-        return self.convert_events_list_to_dataframe(schema, event_list)
+        df = self.convert_events_list_to_dataframe(schema, event_list)
+
+        df["Start"] = pd.to_datetime(df["Start"])
+        df["End"] = pd.to_datetime(df["End"])
+
+        return df
 
     @abstractmethod
     def get_events(self, start_datetime, end_datetime):

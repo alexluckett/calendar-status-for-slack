@@ -50,9 +50,6 @@ class OutlookLocalAPI(RecentEventsProvider):
         apply_to_df_inplace(df, "Busy_Status", _convert_busy_status_to_string)
         apply_to_df_inplace(df, "Response_Status", _convert_response_status_to_string)
 
-        df["Start"] = pd.to_datetime(df["Start"])
-        df["End"] = pd.to_datetime(df["End"])
-
         return df
 
 

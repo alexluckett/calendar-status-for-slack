@@ -22,7 +22,7 @@ def get_event_provider(provider_name, config_storage):
         provider_config = {}
 
     try:
-        provider = _event_providers[provider_name]
+        provider = _event_providers[provider_name.lower()]
     except KeyError:
         raise ValueError("Invalid event provider name provided")
 
