@@ -48,10 +48,10 @@ def update(slack_wrapper, status_message, emoji, force_write=False):
 
 def main():
     try:
-        event_provider = get_event_provider("outlook_local")
+        event_provider = get_event_provider("outlook_local", config_storage)
         slack_wrapper = SlackStatusUpdater(token)
 
-        status_message = get_updated_status_message(event_provider)
+        status_message = get_updated_status_message(event_provider, config_storage)
         emoji = slack_wrapper.get_status_emoji(status_message)
 
         logging.info("Detected status: {}".format(status_message))

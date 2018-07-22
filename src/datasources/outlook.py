@@ -9,7 +9,9 @@ OUTLOOK_DATE_FORMAT = '%m/%d/%Y %H:%M'
 
 class OutlookLocalAPI(RecentEventsProvider):
 
-    def __init__(self):
+    def __init__(self, config):
+        super(OutlookLocalAPI, self).__init__(config)
+
         outlook = win32com.client.Dispatch("Outlook.Application")
         ns = outlook.GetNamespace("MAPI")
 

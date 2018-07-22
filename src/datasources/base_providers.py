@@ -9,6 +9,11 @@ warnings.filterwarnings("ignore", 'This pattern has match groups')
 
 class RecentEventsProvider(ABC):
 
+    config: dict
+
+    def __init__(self, config_dict: dict):
+        self.config = config_dict
+
     def get_recent_events(self):
         now = datetime.datetime.now()
         begin = now - datetime.timedelta(days=14)

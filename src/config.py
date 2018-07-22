@@ -11,7 +11,7 @@ class ConfigStorage:
     def get_general_config(self):
         return self.config["GENERAL"]
 
-    def get_application_config(self, provider_name):
+    def get_application_config(self, provider_name: str) -> dict:
         try:
             return self.config[provider_name.upper()]
         except KeyError:
