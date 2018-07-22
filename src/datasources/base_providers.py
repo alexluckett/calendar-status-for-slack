@@ -22,7 +22,7 @@ class RecentEventsProvider(ABC):
 
         event_list = self.get_events(begin, end)
 
-        schema = ['Title', 'Organizer', 'Start', 'End', 'Duration(Minutes)', 'Busy_Status', 'Response_Status']
+        schema = ['Title', 'Organizer', 'Start', 'End', 'Busy_Status', 'Response_Status']
 
         return self.convert_events_list_to_dataframe(schema, event_list)
 

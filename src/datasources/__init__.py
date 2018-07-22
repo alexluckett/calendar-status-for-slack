@@ -1,11 +1,13 @@
 from datasources.base_providers import EventBreakdown, RecentEventsProvider
 from datasources.outlook import OutlookLocalAPI
+from datasources.google import GoogleCalendar
 from config import ConfigStorage
 
 
 _event_providers = {
-    "outlook_local": OutlookLocalAPI
-}  # type: dict
+    "outlook_local": OutlookLocalAPI,
+    "google_calendar": GoogleCalendar
+}
 
 
 def get_event_provider(provider_name, config_storage):

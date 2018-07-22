@@ -42,7 +42,6 @@ class OutlookLocalAPI(RecentEventsProvider):
                 appointment_item.Organizer,
                 appointment_item.Start.Format(OUTLOOK_DATE_FORMAT),
                 appointment_item.End.Format(OUTLOOK_DATE_FORMAT),
-                appointment_item.Duration,
                 appointment_item.BusyStatus,
                 appointment_item.ResponseStatus,
             ])
@@ -55,7 +54,6 @@ class OutlookLocalAPI(RecentEventsProvider):
         df["End"] = pd.to_datetime(df["End"])
 
         return df
-
 
 
 def _convert_busy_status_to_string(status_number):
