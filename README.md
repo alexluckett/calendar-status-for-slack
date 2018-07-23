@@ -10,7 +10,7 @@ Only Windows is currently supported.
 Windows:
 * Import `task_scheduler_job.xml` to Task Scheduler
 * Modify the single action with a path to `pythonw.exe`
-    * Argments should be modified to include your personal Slack token and a runtime directory for temp files
+    * Provide a single argument (as below) to your config file containing your personal Slack token and a runtime directory for temp files
 * Ensure your Python environment includes the required packages (requirements.txt)
 
 Future versions of this will include an installer.
@@ -18,13 +18,23 @@ Future versions of this will include an installer.
 ## Development setup
 Written in Python 3.x on Windows.
 
+Create your config file (e.g. config.ini):
+```
+[GENERAL]
+rundir = \path\to\a\temp\directory
+fullname = your name as it appears in Outlook (e.g. Surname, Firstname)
+
+[SLACK]
+token = your-personal-slack-token-here
+```
+
 ```
 pip install -r requirements.txt
 git clone https://github.com/alexluckett/calendar-status-for-slack.git
-\path\to\python.exe calendar-status-for-slack\src\main.py --token "YOUR_SLACK_TOKEN" --rundir="\path\to\temp\directory"
+\path\to\python.exe calendar-status-for-slack\src\main.py --config="\path\to\config.ini"
 ```
 
-To force the status to be updated, in the event that your event detection isn't working, add `--force=True` to the command.
+To force the status to be updated, in the event that your event detection isn't working, add `force = true` to your config file under `[GENERAL]`.
 
 ## Release History
 * 0.0.1
