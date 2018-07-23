@@ -34,10 +34,10 @@ class OutlookLocalAPI(RecentEventsProvider):
         return restricted_items
 
     def convert_events_list_to_dataframe(self, schema, event_list):
-        event_list = []
+        new_event_list = []
 
         for appointment_item in event_list:
-            event_list.append([
+            new_event_list.append([
                 appointment_item.Subject,
                 appointment_item.Organizer,
                 appointment_item.Start.Format(OUTLOOK_DATE_FORMAT),
@@ -47,7 +47,7 @@ class OutlookLocalAPI(RecentEventsProvider):
                 appointment_item.ResponseStatus,
             ])
 
-        df = pd.DataFrame(columns=schema, data=event_list)
+        df = pd.DataFrame(columns=schema, data=new_event_list)
         apply_to_df_inplace(df, "Busy_Status", _convert_busy_status_to_string)
         apply_to_df_inplace(df, "Response_Status", _convert_response_status_to_string)
 
