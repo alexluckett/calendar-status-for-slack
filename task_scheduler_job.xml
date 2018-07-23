@@ -60,7 +60,7 @@
   <Actions Context="Author">
     <Exec>
       <Command>C:\path\to\pythonw.exe</Command>
-      <Arguments>C:\path\to\calendar-status-for-slack\src\main.py --token "YOUR_SLACK_TOKEN_HERE" --rundir="C:\path\to\temp\"</Arguments>
+      <Arguments>path\to\calendar-status-for-slack\src\main.py --config=\path\to\config.ini</Arguments>
     </Exec>
   </Actions>
 </Task>
