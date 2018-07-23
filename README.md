@@ -28,6 +28,7 @@ fullname = your name as it appears in Outlook (e.g. Surname, Firstname)
 token = your-personal-slack-token-here
 ```
 
+Install requirements and run the script:
 ```
 pip install -r requirements.txt
 git clone https://github.com/alexluckett/calendar-status-for-slack.git
