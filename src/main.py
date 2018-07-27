@@ -13,7 +13,7 @@ config_file = command_line_args.config
 config_storage = ConfigStorage(config_file)
 
 run_directory = config_storage.get_general_config()["rundir"]
-force = config_storage.get_general_config()["force"]
+force = config_storage.get_general_config().get("force", False)
 token = config_storage.get_application_config("slack")["token"]
 status_message_path = "{}\\previous_status.txt".format(run_directory)
 
