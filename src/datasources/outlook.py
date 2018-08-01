@@ -47,6 +47,8 @@ class OutlookLocalAPI(RecentEventsProvider):
                 appointment_item.ResponseStatus,
             ])
 
+            appointment_item.Close(0)
+
         df = pd.DataFrame(columns=schema, data=new_event_list)
         apply_to_df_inplace(df, "Busy_Status", _convert_busy_status_to_string)
         apply_to_df_inplace(df, "Response_Status", _convert_response_status_to_string)
